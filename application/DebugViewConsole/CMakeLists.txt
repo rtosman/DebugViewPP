@@ -1,6 +1,7 @@
 project(DebugViewConsole)
 
-add_executable(DebugViewConsole DebugViewConsole.cpp)
+add_executable(DebugViewConsole DebugViewConsole.cpp "WMIProcessMonitor.h" "WMIProcessMonitor.cpp" "cxxopts.hpp")
+include_directories(${CMAKE_SOURCE_DIR}/pugixml/include)
 
 target_link_libraries(DebugViewConsole
 	PRIVATE
@@ -12,6 +13,8 @@ target_link_libraries(DebugViewConsole
 		dv::indexedstorage
 		CobaltFusion
 		docopt
+		debug ${CMAKE_SOURCE_DIR}/pugixml/Debug/pugixml.lib
+		optimized ${CMAKE_SOURCE_DIR}/pugixml/Release/pugixml.lib
 )
 
 install(TARGETS DebugViewConsole RUNTIME DESTINATION bin)
